@@ -14,9 +14,6 @@ app.post("/api/tickets", async (req, res) => {
     return res.status(400).json({ error: "Email and text are required." });
   }
 
-  // TODO: Add AI Classification here
-  // TODO: Add Postgres INSERT query here
-
   res
     .status(202)
     .json({ message: "Ticket received and processing setup is ready." });
