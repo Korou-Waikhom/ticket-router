@@ -1,11 +1,18 @@
 const express = require("express");
 require("dotenv").config();
-const db = require("./db");
+const { classifyTicket } = require("./services/aiService");
 
 const app = express();
-const PORT = process.env.PORT;
 
 app.use(express.json());
+
+const PORT = process.env.PORT;
+
+app.get("/", (req, res) => {
+  return res.json({
+    msg: "hello",
+  });
+});
 
 app.post("/api/tickets", async (req, res) => {
   const { customer_email, original_text } = req.body;
@@ -15,7 +22,6 @@ app.post("/api/tickets", async (req, res) => {
   }
 
   try {
-    //  Send text and wait for the classification
     console.log(`Processing ticket for ${customer_email}`);
     const aiData = await classifyTicket(original_text);
 
@@ -33,5 +39,5 @@ app.post("/api/tickets", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`);
+  console.log(`Server is listening on http://localhost`);
 });
