@@ -1,8 +1,8 @@
 const aiService = require("./aiService");
-const ticketRepository = require("../repositories/ticketRepository");
+const ticketRepository = require("../repository/ticketRepository");
 
 async function processNewTicket(email, text) {
-  const aiData = await aiService.classifyTicketText(text);
+  const aiData = await aiService.classifyTicket(text);
 
   const completeTicketData = {
     customer_email: email,
