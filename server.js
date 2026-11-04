@@ -1,6 +1,7 @@
 import app from "./app.js";
 import pool from "./config/db.js";
 import "./config/env.js";
+//hi
 
 function validatePort(portVal) {
   const port = Number(portVal);
